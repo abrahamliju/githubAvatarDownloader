@@ -1,9 +1,9 @@
 var request = require('request');
 var fs = require('fs');
+var dtEnv = require('dotenv').config();
 
-var GITHUB_USER = "abrahamliju";
-var GITHUB_TOKEN = "43d2de6e90c25e746fb8e4f62f03c61662219e11";
-
+var GITHUB_USER = process.env.USER;
+var GITHUB_TOKEN = process.env.TOKEN;
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
@@ -15,9 +15,9 @@ function getRepoContributors(repoOwner, repoName, cb) {
   };
   request(requestURL, cb);
 };
-if(process.argv.length < 4){
+if (process.argv.length < 4) {
   console.log("Please enter Repo Name and a Username to continue");
-}else{
+} else {
   getRepoContributors(process.argv[2], process.argv[3], function(err, result, body) {
     var avatarData = JSON.parse(body);
     var avatarUrl  = [];
@@ -27,7 +27,7 @@ if(process.argv.length < 4){
       avatarUrl.push(value.avatar_url);
       userId.push(value.login);
     });
-    for(var i = 0; i < avatarUrl.length; i++){
+    for(var i = 0; i < avatarUrl.length; i++) {
       downloadImageByURL(avatarUrl[i],userId[i]);
     }
     console.log("Images Downloaded in githubAvatarDownloader/ProfilePics");

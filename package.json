@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/abrahamliju/githubAvatarDownloader#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "request": "^2.79.0"
   }
 }
