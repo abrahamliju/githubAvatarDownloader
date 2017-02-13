@@ -1,0 +1,22 @@
+{
+  "name": "githubavtardownloader",
+  "version": "0.0.1",
+  "description": "download github avatars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abrahamliju/githubAvatarDownloader.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abrahamliju/githubAvatarDownloader/issues"
+  },
+  "homepage": "https://github.com/abrahamliju/githubAvatarDownloader#readme",
+  "dependencies": {
+    "request": "^2.79.0"
+  }
+}
