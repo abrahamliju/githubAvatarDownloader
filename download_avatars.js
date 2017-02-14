@@ -11,7 +11,8 @@ function getRepoContributors(repoOwner, repoName, cb) {
   var requestURL = {
     url : 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors',
     headers : {
-    'User-Agent': 'GitHub Avatar Downloader - Student Project'}
+      'User-Agent': 'GitHub Avatar Downloader - Student Project'
+    }
   };
   request(requestURL, cb);
 };
@@ -20,17 +21,15 @@ if (process.argv.length < 4) {
 } else {
   getRepoContributors(process.argv[2], process.argv[3], function(err, result, body) {
     var avatarData = JSON.parse(body);
-    var avatarUrl  = [];
-    var userId = [];
-    console.log("Downloading Avatar Images!!!");
-    avatarData.forEach(function(value, index){
-      avatarUrl.push(value.avatar_url);
-      userId.push(value.login);
-    });
-    for(var i = 0; i < avatarUrl.length; i++) {
-      downloadImageByURL(avatarUrl[i],userId[i]);
-    }
-    console.log("Images Downloaded in githubAvatarDownloader/ProfilePics");
+    if(result.statusCode === 200) {
+      console.log("Downloading Avatar Images!!!");
+      avatarData.forEach(function(value, index){
+        downloadImageByURL(value.avatar_url,value.login);
+      });
+      console.log("Images Downloaded in githubAvatarDownloader/ProfilePics");
+    }else {
+      console.log("Please check if the username and repo exist!!!");
+  }
   });
 }
 
